@@ -1,0 +1,21 @@
+body {
+    margin: 5% 5% 10% 10%;
+    font-family: 'Newsreader', serif;
+}
+h2 {
+    font-size: 18px;
+    color: rgb(61, 61, 61);
+}
+.content-wrapper {
+    display: grid;
+    grid-template-columns: auto;
+}
+.form-box {
+    padding-top: 15px;
+}
+.results-box-wrapper {
+    /* display: none; */
+    margin-top: 32px;
+    border: 1px solid black;
+    padding: 6px;
+}

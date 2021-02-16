@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader&display=swap" rel="stylesheet">
+    <title>Number Generator</title>
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Number generator</h1>
+
+        <div class="content-wrapper">
+            <!-- Times Tables -->
+            <div class="form-box" id="times-tables">
+                <h2>Times Tables</h2>
+                Factor:
+                <input type="text" id="times-tables-factor" type="text" value="1"> 
+                Iterations:
+                <input type="text" id="times-tables-iterations" type="text" value="100">
+                <button type="submit" id="countButton" onclick="timesTables();toggleOnResultsBox();">Submit</button>
+            </div>
+
+            <!-- Prime Numbers -->
+            <div class="form-box" id="prime">
+                <h2>Prime Numbers</h2>
+                Min value:
+                <input type="text" id="primeMinValue" type="text" value="1">
+                Max value:
+                <input type="text" id="primeMaxValue" type="text" value="1000">
+                <button type="submit" id="primeButton" onclick="generatePrimeNumbers();toggleOnResultsBox();">Submit</button>
+            </div>
+
+            <!-- Fibonacci Numbers -->
+            <div class="form-box" id="fibo">
+                <h2>Fibonacci Numbers</h2>
+                Iterations:
+                <input type="text" id="fiboMaxValue" type="text" value="100">
+                <button type="submit" id="fiboButton" onclick="generateFiboNumbers();toggleOnResultsBox();">Submit</button>
+            </div>
+
+            <!-- Triangle Sequence -->
+            <div class="form-box" id="triangle">
+                <h2>Triangular number sequence</h2>
+                Iterations:
+                <input type="text" id="triangleMaxValue" type="text" value="100">
+                <button type="submit" id="triangleButton" onclick="generateTriangleSequence();toggleOnResultsBox();">Submit</button>
+            </div>
+
+            <!-- Square Sequence -->
+            <div class="form-box" id="square">
+                <h2>Square number sequence</h2>
+                Iterations:
+                <input type="text" id="squareMaxValue" type="text" value="100">
+                <button type="submit" id="squareButton" onclick="generateSquareSequence();toggleOnResultsBox();">Submit</button>
+            </div>
+
+            <!-- Pentagon Sequence -->
+            <div class="form-box" id="pentagon">
+                <h2>Pentagon number sequence</h2>
+                Iterations:
+                <input type="text" id="pentagonMaxValue" type="text" value="100">
+                <button type="submit" id="pentagonButton" onclick="generatePentagonSequence();toggleOnResultsBox();">Submit</button>
+            </div>
+
+            <!-- Hexagon Sequence -->
+            <div class="form-box" id="Hexagon">
+                <h2>Hexagon number sequence</h2>
+                Iterations:
+                <input type="text" id="hexagonMaxValue" type="text" value="100">
+                <button type="submit" id="hexagonButton" onclick="generateHexagonSequence();toggleOnResultsBox();">Submit</button>
+            </div>
+        </div>
+
+        <div class="results-box-wrapper" id="results-box" style="display:none;">
+            <h2>Results:</h2>
+            <p id="para"></p>
+            <button type="submit" id="clearButton" onclick="toggleOffResultsBox();">Clear</button>
+        </div>
+        
+    </div>
+    
+</body>
+<script>
+    var clear = () => {
+        document.getElementById('para').innerHTML = "";
+    };
+    var print = (i) => {
+        document.getElementById('para').innerHTML += (i + ",\n");
+    };
+    var timesTables = () => {
+        clear();
+        const timesTableFactor = document.querySelector('#times-tables-factor').value;
+        const timesIterations = document.querySelector('#times-tables-iterations').value;
+
+        for(i = 1; i <= timesIterations; i++) {
+            print(timesTableFactor*i);
+        }
+    };
+    var checkPrime = (target) => {
+        x = target;
+        result = true;
+        if(x == 0) {result = false};
+        if(x == 1) {result = false};
+        if(x == 4) {result = false};
+        for(y = 2; y < Math.round(target/2); y++) {
+            
+            if(target%y == 0) {
+                result = false;
+            }
+        }
+        return result;
+    };
+    var generatePrimeNumbers = () => {
+        clear();
+        const primeMinValue = document.querySelector('#primeMinValue').value;
+        const primeMaxValue = document.querySelector('#primeMaxValue').value;
+
+        console.log(primeMinValue);
+        console.log(primeMaxValue);
+
+        for(i = primeMinValue; i <= primeMaxValue; i++) {
+            if(checkPrime(i)) {print(i)};
+        }
+    }
+    var generateFiboNumbers = () => {
+        clear();
+        const fiboMaxValue = document.querySelector('#fiboMaxValue').value;
+        var n1 = 0, n2 = 1, nextTerm;
+
+        for(i = 1; i <= fiboMaxValue; i++) {
+             print(n1);
+            nextTerm = n1 + n2;
+            n1 = n2;
+            n2 = nextTerm;
+        }
+    }
+    var generateTriangleSequence = () => {
+        clear();
+        const triangleMaxValue = document.querySelector('#triangleMaxValue').value;
+
+        var n = 0;
+        for(i = 0; i <= triangleMaxValue; i++) {
+            n = i*(i+1) / 2;
+            print(n);
+        }
+    }
+    var generateSquareSequence = () => {
+        clear();
+        const squareIterations = document.querySelector('#squareMaxValue').value;
+
+        for(i = 1; i <= squareIterations; i++) {
+            print(i*i);
+        }
+    }
+    var generatePentagonSequence = () => {
+        clear();
+        const pentagonIterations = document.querySelector('#pentagonMaxValue').value;
+
+        for(i = 1; i <= pentagonIterations; i++) {
+            print(i*(3*i-1) / 2);
+        }
+    }
+    var generateHexagonSequence = () => {
+        clear();
+        const hexagonIterations = document.querySelector('#hexagonMaxValue').value;
+
+        for(i = 1; i <= hexagonIterations; i++) {
+            print(2*i*i - i);
+        }
+    }
+    var toggleResultsBox = () => {
+        var box = document.getElementById("results-box");
+        console.log(box.style.display);
+        if(box.style.display === "none") {
+            box.style.display = "block";
+        } else {
+            box.style.display = "none";
+        }
+    }
+    var toggleOnResultsBox = () => {
+        var box = document.getElementById("results-box");
+        if(box.style.display === "none") {
+            box.style.display = "block";
+        }
+    }
+    var toggleOffResultsBox = () => {
+        var box = document.getElementById("results-box");
+        if(box.style.display === "block") {
+            box.style.display = "none";
+        }
+    }
+</script>
+
+</html>
